@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>BI-PJS homework</title>
+    <script src="main.js" defer></script>
+</head>
+
+<body>
+
+<h2>Zadání</h2>
+<h3>Úvod</h3>
+<ul>
+    <li>Na stránce <a href="https://data.gov.cz/datov%C3%A9-sady" target="_blank">katalogu národních otevřených dat</a>
+        je mimo spousty jiných datových sad možné stáhnout i <a
+                href="https://data.gov.cz/datov%C3%A1-sada?iri=https%3A%2F%2Fdata.gov.cz%2Fzdroj%2Fdatov%C3%A9-sady%2Fhttp---opendata.praha.eu-api-3-action-package_show-id-zastavky-a-oznacniky-pid"
+                target="_blank">
+            seznam zastávek s rámci Pražské integrované dopravy</a> ve
+        formátu JSON.
+    </li>
+    <li>Původní zdroj je na adrese <u>http://data.pid.cz/stops/json/stops.json</u>, avšak vzhledem k CORS, které jsme
+        neprobírali, je kopie těchto dat nahrána na
+        <a href="https://gist.githubusercontent.com/oldamalec/161956587b930cd8aa3628c2da24579f/raw/0132aa3624141745862e55f48defc55b007b02cb/opendata-pid-stops.js"
+           target="_blank">
+            tento Github Gist.
+        </a>
+        Tento zdroj můžete bez problémů stahovat i z Vašeho <i>localhost</i>.
+    </li>
+    <li>Dokumentaci těchto dat naleznete na stránce <a href="https://pid.cz/o-systemu/opendata/#h-stops"
+                                                       target="_blank">PID opendata</a>.
+    </li>
+</ul>
+<hr>
+<h3>Načítání dat (2b.)</h3>
+<ul>
+    <li>Na stránce je připravené tlačítko <i>Načíst data o zastávkách</i>, které zatím nic nedělá.
+        Pomocí JS zajistěte, aby kliknutí na něj stáhlo data o zastávkách z adresy uvedené výše.
+    </li>
+    <li>Zajistěte, aby na tlačítko nešlo kliknout vícekrát, pokud už se data načítají!.</li>
+    <li>Pokud už jsou data načtena, změňte text tlačítka na "Aktualizovat data o zastávkách".</li>
+</ul>
+<h3>Vyhledávací pole a tlačítko (2b.)</h3>
+<ul>
+    <li>Jakmile jsou data načtena, zobrazte text "Hledat", textové pole a tlačítko "Hledej!".</li>
+    <li>Tlačítko "Hledej!" bude neaktivní <strong>vždy</strong>, když bude hledací políčko prázdné.</li>
+    <li>Hledání je možné kromě tlačítka vyvolat také klávesou enter - pokud je políčko nevyplněné, ani stisk enteru
+        neprovádí žádnou akci.
+    </li>
+</ul>
+<h3>Výsledky hledání (2b.)</h3>
+<ul>
+    <li>Hledání probíhá nad staženými daty, vyhledává se v atributu <code>name</code> u každé zastávky, hledá se přesná
+        shoda textu (není nutné normalizovat háčkyčárky ani velká písmena), hledaný text se ale může nacházet kdekoliv
+        (i uprostřed) názvu zastávky.
+    </li>
+    <li>Výsledek hledání může být tří typů:
+        <ul>
+            <li>Pokud není nalezena žádná shoda:
+                <ul>
+                    <li>Vypíše se informace "Žádné výsledky!"</li>
+                </ul>
+            </li>
+            <li>Pokud je nalezena právě jedna shoda:
+                <ul>
+                    <li>Zobrazí se detail této zastávky, viz níže.</li>
+                </ul>
+            </li>
+            <li>Pokud je nalezeno více shod:
+                <ul>
+                    <li>Zobrazí se text "Měli jste na mysli:"</li>
+                    <li>Zobrazí se seznam výsledků, uživatel může kliknout na libovolný výsledek, poté se zobrazí detail
+                        této
+                        zastávky, viz níže.
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+<h3>Zobrazení detailu zastávky (2b.)</h3>
+<ul>
+    <li>Jako nadpis se vypíše <code>name</code> zastávky.</li>
+    <li>Zastávka má více nástupišť. Pro každé nástupiště vypište:
+        <ul>
+            <li>"Nástupiště <code>n</code>" - kde <code>n</code> jde od 1 až do počtu nástupišť dané zastávky</li>
+            <li>Tento text bude odkazovat na Google mapy, se zadanými souřadnicemi konkrétného nástupiště, viz <i>Tipy
+                závěrem</i>.
+            </li>
+            <li>Dále bude zobrazen seznam linek, které z tohoto nástupiště odjíždí, ve formátu:
+                <ul>
+                    <li>typ dopravního prostředku (není nutné překládat, použijte typ přímo z dat),</li>
+                    <li>číslo linky,</li>
+                    <li>cílová stanice.</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+<hr>
+<h3>Restrikce</h3>
+<ul>
+    <li><strong>Vůbec ručně neměňte tento HTML soubor, vše řešte v Javascriptu!</strong></li>
+</ul>
+<h3>Tipy závěrem</h3>
+<ul>
+    <li>Aplikaci <strong>nemusíte stylovat.</strong></li>
+    <li>Může se Vám hodit atribut <code>disabled</code></li>
+    <li><code>https://www.google.com/maps/place/40,20</code> je adresa, která vede na souřadnice 40, 20</li>
+    <li><strong>Na začátku nahrávky cvičení z 22. 4. je prezentace, jak má výsledek vypadat a popis dalších
+        triků.</strong></li>
+    <li>Není nutné řešit všechny optimalizace vytváření obsahu HTML Javascriptem, ale je to dobrá příležitost si je
+        vyzkoušet.
+    </li>
+    <li>Nemusíte řešit objektovou architekruru stránky, jako v Nikitově úkolu. Stačí "plain" přístup.</li>
+</ul>
+<hr style="margin: 2em">
+
+<!-- TODO use this div to inject your solution using Javascript -->
+<div id="solution">
+    <button id="loadData">Načíst data o zastávkách</button>
+</div>
+</body>
+
+</html>

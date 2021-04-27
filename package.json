@@ -1,0 +1,19 @@
+{
+  "name": "omraidav",
+  "version": "1.0.0",
+  "description": "1. Vytvořte si novou branch z větve `master` (nazvěte ji, jak chcete) 2. Do této větve můžete postupně commitovat Vaše řešení 3. Až budete s řešním spokojeni (nebo se přiblíží deadline), vytvořte z této nové branch `merge request` do `master`, a přiřaďte jako `Assignee` Oldu 4. Termín odevzdání je **2. 5. 2021 23:59:59** - za čas odevzdání se považuje přiřazení Merge requestu cvičícímu.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.fit.cvut.cz:BI-PJS/b202/hw-02-opendata/omraidav.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}
